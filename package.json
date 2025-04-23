@@ -1,24 +1,28 @@
 {
-  "name": "express-generator2",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "nodemon ./src/bin/server.js",
-    "start": "node ./src/bin/server.js"
-  },
-  "dependencies": {
-    "chalk": "^5.3.0",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^4.19.2",
-    "mongodb": "^6.15.0",
-    "morgan": "^1.10.0"
-  },
-  "devDependencies": {
-    "eslint": "^9.8.0",
-    "nodemon": "^3.1.4",
-    "prettier": "^3.3.3"
-  },
-  "type": "module"
+	"name": "jornada-fullstack-back-end",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=22.12.0 <=22.14.0"
+	},
+	"scripts": {
+		"dev": "nodemon ./src/bin/server.js",
+		"prod": "node ./src/bin/server.js",
+		"start": "node ./src/bin/server.js"
+	},
+	"dependencies": {
+		"chalk": "^5.3.0",
+		"cookie-parser": "^1.4.6",
+		"cors": "^2.8.5",
+		"dotenv": "^16.5.0",
+		"express": "^4.19.2",
+		"mongodb": "^6.15.0",
+		"morgan": "^1.10.0"
+	},
+	"devDependencies": {
+		"eslint": "^9.8.0",
+		"nodemon": "^3.1.4",
+		"prettier": "^3.3.3"
+	}
 }
