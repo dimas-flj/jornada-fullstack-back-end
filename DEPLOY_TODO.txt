@@ -1,0 +1,40 @@
+In April 2025
+
+When adopting the Render platform to deploy my web applications (backend/frontend), I encountered compatibility 
+issues between the NodeJS version on the platform and the version in my development environment.
+
+I noticed that the platform's default version, as of this date, is: 22.12.0 — which is lower than the one in my 
+development environment: 22.14.0.
+
+To avoid having to install Docker and match the development version on the platform, I discovered some configurations 
+that work around this incompatibility.
+
+Note: This solution should only be applied if the professional implementing it understands that some tools used in a 
+newer NodeJS version may not function correctly, since the platform version is older.
+
+
+|============================================================================================================|
+// TO MATCH TO RENDER DEPLOY
+
+IN package.json FILE:
+"scripts": {
+    "dev": "nodemon ./src/bin/server.js",
+    "prod": "node ./src/bin/server.js", <--- create if not exists
+    "start": "node ./src/bin/server.js"
+},
+
+|============================================================================================================|
+
+// TO MATCH WITH RENDER NODE VERSION
+
+IN package.json FILE (create if not exists):
+
+"engines": {
+    "node": ">=22.12.0 <=22.14.0" // my actual version is 22.14.0
+},
+
+IN Render DASHBOARD:
+1. Add an environment variable SKIP_INSTALL_DEPS=true (not documented yet on render doc as I understand)
+2. In your build command: npm install npm && npx npm ci
+
+|============================================================================================================|
