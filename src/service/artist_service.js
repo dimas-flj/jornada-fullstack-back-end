@@ -106,3 +106,25 @@ export const getArtistSongBySongId = async (song_id) => {
 		])
 		.toArray();
 };
+
+export const getArtistsWithSongs = async () => {
+	return await collection
+		.aggregate([
+			{
+				$lookup: {
+					from: "songs",
+					localField: "name",
+					foreignField: "artist",
+					as: "song",
+				},
+			},
+			{
+				$match: {
+					song: {
+						$ne: [],
+					},
+				},
+			},
+		])
+		.toArray();
+};
