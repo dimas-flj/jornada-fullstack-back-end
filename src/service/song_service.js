@@ -24,3 +24,19 @@ export const getSongByName = async (song_name) => {
 export const getOnlySongsByArtistName = async (artist_name) => {
 	return await collection.find({ artist: artist_name }).toArray();
 };
+
+// host/songs/artist
+export const getSongsWithArtist = async () => {
+	return await collection
+		.aggregate([
+			{
+				$lookup: {
+					from: "artists",
+					localField: "artist",
+					foreignField: "name",
+					as: "artist",
+				},
+			},
+		])
+		.toArray();
+};

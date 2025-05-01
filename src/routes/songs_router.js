@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllSongs, getOnlySongsByArtistName, getSongById, getSongByName } from "../service/song_service.js";
+import { getAllSongs, getOnlySongsByArtistName, getSongById, getSongByName, getSongsWithArtist } from "../service/song_service.js";
 import { AppError } from "../handler/error/AppError.js";
 
 const router = express.Router();
@@ -70,6 +70,16 @@ router.get("/artist/name/:name", async (request, response, next) => {
 		} else {
 			response.send(result);
 		}
+	} catch (error) {
+		next(new AppError(error.message, 500));
+	}
+});
+
+router.get("/artist", async (request, response, next) => {
+	response.contentType("application/json");
+
+	try {
+		response.send(await getSongsWithArtist());
 	} catch (error) {
 		next(new AppError(error.message, 500));
 	}
